@@ -7,6 +7,8 @@ module.exports = {
         sans: ["Montserrat", "sans-serif"],
       },
       colors: {
+        background: "#EFEFEF",
+        font: "#333333",
         megasena: "#6BEFA3",
         quina: "#8666EF",
         lotofacil: "#DD7AC6",
@@ -16,6 +18,7 @@ module.exports = {
       },
       backgroundImage: {
         sidebar: "url('../src/assets/sidebar.svg')",
+        sidebarMobile: "url('../src/assets/sidebarMobile.svg')",
       },
     },
   },
