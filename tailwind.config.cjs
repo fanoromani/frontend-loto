@@ -17,8 +17,8 @@ module.exports = {
         diadesorte: "#BFAF83",
       },
       backgroundImage: {
-        sidebar: "url('../src/assets/sidebar.svg')",
-        sidebarMobile: "url('../src/assets/sidebarMobile.svg')",
+        sidebar: "url('../src/assets/sidebar.png')",
+        sidebarMobile: "url('../src/assets/header.png')",
       },
     },
   },
