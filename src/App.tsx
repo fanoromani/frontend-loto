@@ -4,7 +4,7 @@ import "./index.css";
 
 function App() {
   return (
-    <div className="w-screen bg-background md:flex">
+    <div className="w-screen h-screen bg-background md:flex md:items-center">
       <Sidebar />
       <BallSorter />
     </div>

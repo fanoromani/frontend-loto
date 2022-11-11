@@ -1,12 +1,32 @@
 import { Dropdown } from "./Dropdown";
-import LogoSena from "../assets/logoSena.png";
+import logo from "../assets/logo.png";
 
 export function Sidebar() {
   return (
-    <div className="h-2/3 bg-bottom bg-cover bg-sidebarMobile flex flex-col items-center md:min-w-[613px] md:pl-24 md:py-24 md:flex md:flex-col md:items-start md:justify-between md:h-screen md:bg-sidebar">
+    <div
+      className="
+    h-2/3
+    bg-sidebarMobile
+    flex 
+    flex-col 
+    bg-cover
+    bg-center 
+    bg-no-repeat
+    items-center 
+    md:min-w-[600px] 
+    md:pl-24 
+    md:py-24 
+    md:flex 
+    md:flex-col 
+    md:items-start 
+    md:justify-between 
+    md:h-screen 
+    md:bg-sidebar
+    "
+    >
       <Dropdown />
       <div className="my-20 md:mt-0 flex items-center gap-6">
-        <img src={LogoSena} alt="" />
+        <img src={logo} alt="" />
         <div className="font-bold text-3xl text-white">MEGA-SENA</div>
       </div>
       <div className="text-center md:text-left">
