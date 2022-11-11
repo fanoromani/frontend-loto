@@ -5,14 +5,16 @@ export function Sidebar() {
   return (
     <div
       className="
-    h-2/3
+    h-3/4
     bg-sidebarMobile
     flex 
     flex-col 
     bg-cover
-    bg-center 
+    bg-bottom
     bg-no-repeat
     items-center 
+    pt-8
+    md:bg-center
     md:min-w-[600px] 
     md:pl-24 
     md:py-24 
