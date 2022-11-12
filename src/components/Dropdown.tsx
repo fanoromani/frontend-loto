@@ -8,7 +8,7 @@ export function Dropdown() {
         <Select.Icon />
       </Select.Trigger>
       <Select.Portal>
-        <Select.Content className="text-font bg-white py-3 px-4 rounded text-sm flex justify-between">
+        <Select.Content className="text-font bg-white py-3 px-4 rounded text-sm flex justify-between relative z-30">
           <Select.ScrollUpButton />
           <Select.Viewport>
             <Select.Item
