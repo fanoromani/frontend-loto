@@ -1,25 +1,29 @@
 import * as Select from "@radix-ui/react-select";
-import { useState } from "react";
 import { RaffleProps } from "../types";
 
 interface DropdownProps {
   raffles: RaffleProps[];
   raffleData: any[];
   setRaffleID: Function;
+  setNumbersID: Function;
+  handleRaffleSelect: Function;
 }
 
-export function Dropdown({ raffles, raffleData, setRaffleID }: DropdownProps) {
-  const [valorTeste, setValorTeste] = useState<string>("");
-
-  const handleRaffleSelect = (value: string) => {
+export function Dropdown({
+  raffles,
+  raffleData,
+  setRaffleID,
+  setNumbersID,
+  handleRaffleSelect,
+}: DropdownProps) {
+  /* const handleRaffleSelect = (value: string) => {
     if (value !== "") {
-      const loteriaTeste = raffleData.find(
-        (e) => e.loteriaId === parseInt(value)
-      ).concursoId;
-      console.log(value, "amostrei");
-      console.log(loteriaTeste, "amostrou");
+      setRaffleID(value);
+      setNumbersID(
+        raffleData.find((e) => e.loteriaId === parseInt(value)).concursoId
+      );
     }
-  };
+  }; */
 
   return (
     <Select.Root onValueChange={(value) => handleRaffleSelect(value)}>

@@ -3,12 +3,14 @@ import { api } from "./lib/axios";
 import { BallSorter } from "./components/BallSorter";
 import { Sidebar } from "./components/Sidebar";
 import "./index.css";
+import { RaffleDataProps, RaffleProps } from "./types";
 
 function App() {
-  const [raffles, setRaffles] = useState();
-  const [raffleData, setRaffleData] = useState();
+  const [raffles, setRaffles] = useState<RaffleProps[]>();
+  const [raffleData, setRaffleData] = useState<RaffleDataProps[]>([]);
   const [raffleNumbers, setRaffleNumbers] = useState();
-  const [raffleID, setRaffleID] = useState();
+  const [raffleID, setRaffleID] = useState<string>();
+  const [numbersID, setNumbersID] = useState<string>("");
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -18,15 +20,12 @@ function App() {
     setError(false);
     const callApi = async () => {
       try {
-        const [rafflesResponse, raffleDataResponse, raffleNumbersResponse] =
-          await Promise.all([
-            api.get("loterias"),
-            api.get("loterias-concursos"),
-            api.get("concursos/440"),
-          ]);
+        const [rafflesResponse, raffleDataResponse] = await Promise.all([
+          api.get("loterias"),
+          api.get("loterias-concursos"),
+        ]);
         setRaffles(rafflesResponse.data);
         setRaffleData(raffleDataResponse.data);
-        setRaffleNumbers(raffleNumbersResponse.data);
       } catch (err) {
         console.log(err);
       } finally {
@@ -36,6 +35,37 @@ function App() {
     callApi();
   }, []);
 
+  useEffect(() => {
+    setError(false);
+    const callApi2 = async () => {
+      if (numbersID) {
+        try {
+          const raffleNumbersResponse = await api.get(`concursos/${numbersID}`);
+          setRaffleNumbers(raffleNumbersResponse.data);
+        } catch (err) {
+          console.log(err);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+    callApi2();
+  }, [numbersID]);
+
+  console.log(raffleID, "ID");
+  console.log(numbersID, "numID");
+  console.log(raffleNumbers, "sam");
+
+  const handleRaffleSelect = (raffleID: string) => {
+    if (raffleID !== "" && raffleData) {
+      setNumbersID(
+        raffleData.find((e) => e.loteriaId === parseInt(raffleID))
+          ?.concursoId || ""
+      );
+      setRaffleID(raffleID);
+    }
+  };
+
   return (
     <div className="w-screen h-screen bg-background md:flex md:items-center">
       {!loading && (
@@ -43,6 +73,8 @@ function App() {
           raffles={raffles}
           raffleData={raffleData}
           setRaffleID={setRaffleID}
+          setNumbersID={setNumbersID}
+          handleRaffleSelect={handleRaffleSelect}
         />
       )}
       {!loading && <BallSorter />}

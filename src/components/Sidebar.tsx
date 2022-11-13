@@ -2,7 +2,13 @@ import { Dropdown } from "./Dropdown";
 import logo from "../assets/logo.png";
 import { Background } from "./Background";
 
-export function Sidebar({ raffles, raffleData, setRaffleID }: any) {
+export function Sidebar({
+  raffles,
+  raffleData,
+  setRaffleID,
+  setNumbersID,
+  handleRaffleSelect,
+}: any) {
   return (
     <div
       className="
@@ -32,6 +38,8 @@ export function Sidebar({ raffles, raffleData, setRaffleID }: any) {
         raffles={raffles}
         raffleData={raffleData}
         setRaffleID={setRaffleID}
+        setNumbersID={setNumbersID}
+        handleRaffleSelect={handleRaffleSelect}
       />
       <div className="my-20 md:mt-0 flex items-center gap-6">
         <img src={logo} alt="" />
