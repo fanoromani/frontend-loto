@@ -7,6 +7,8 @@ import "./index.css";
 function App() {
   const [raffles, setRaffles] = useState();
   const [raffleData, setRaffleData] = useState();
+  const [raffleNumbers, setRaffleNumbers] = useState();
+  const [raffleID, setRaffleID] = useState();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -16,12 +18,15 @@ function App() {
     setError(false);
     const callApi = async () => {
       try {
-        const [rafflesResponse, raffleDataResponse] = await Promise.all([
-          api.get("loterias"),
-          api.get("loterias-concursos"),
-        ]);
+        const [rafflesResponse, raffleDataResponse, raffleNumbersResponse] =
+          await Promise.all([
+            api.get("loterias"),
+            api.get("loterias-concursos"),
+            api.get("concursos/440"),
+          ]);
         setRaffles(rafflesResponse.data);
         setRaffleData(raffleDataResponse.data);
+        setRaffleNumbers(raffleNumbersResponse.data);
       } catch (err) {
         console.log(err);
       } finally {
@@ -31,10 +36,15 @@ function App() {
     callApi();
   }, []);
 
-  console.log(raffles);
   return (
     <div className="w-screen h-screen bg-background md:flex md:items-center">
-      {!loading && <Sidebar raffles={raffles} />}
+      {!loading && (
+        <Sidebar
+          raffles={raffles}
+          raffleData={raffleData}
+          setRaffleID={setRaffleID}
+        />
+      )}
       {!loading && <BallSorter />}
     </div>
   );

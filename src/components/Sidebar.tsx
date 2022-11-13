@@ -2,7 +2,7 @@ import { Dropdown } from "./Dropdown";
 import logo from "../assets/logo.png";
 import { Background } from "./Background";
 
-export function Sidebar({ raffles }: any) {
+export function Sidebar({ raffles, raffleData, setRaffleID }: any) {
   return (
     <div
       className="
@@ -28,7 +28,11 @@ export function Sidebar({ raffles }: any) {
     overflow-hidden
     "
     >
-      <Dropdown raffles={raffles} />
+      <Dropdown
+        raffles={raffles}
+        raffleData={raffleData}
+        setRaffleID={setRaffleID}
+      />
       <div className="my-20 md:mt-0 flex items-center gap-6">
         <img src={logo} alt="" />
         <div className="font-bold text-3xl text-white">MEGA-SENA</div>
