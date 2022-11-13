@@ -1,19 +1,25 @@
 import { Dropdown } from "./Dropdown";
 import logo from "../assets/logo.png";
 import { Background } from "./Background";
-import { RaffleProps } from "../types";
+import { RaffleProps, RaffleDataProps } from "../types";
 
 interface SidebarProps {
   raffles: RaffleProps[];
   handleRaffleSelect: Function;
   raffleID: string;
+  raffleData: RaffleDataProps[];
 }
 
 export function Sidebar({
   raffles,
   handleRaffleSelect,
   raffleID,
+  raffleData,
 }: SidebarProps) {
+  console.log(
+    raffles.find((e) => e.id.toLocaleString() === raffleID)?.nome.toUpperCase()
+  );
+
   return (
     <div
       className="

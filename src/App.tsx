@@ -57,10 +57,6 @@ function App() {
     callApi2();
   }, [numbersID]);
 
-  console.log(raffleID, "ID");
-  console.log(numbersID, "numID");
-  console.log(raffleNumbers, "sam");
-
   const handleRaffleSelect = (raffleID: string) => {
     if (raffleID !== "" && raffleData) {
       setNumbersID(
@@ -78,6 +74,7 @@ function App() {
           raffles={raffles}
           handleRaffleSelect={handleRaffleSelect}
           raffleID={raffleID}
+          raffleData={raffleData}
         />
       )}
       {!loading && <BallSorter raffleNumbers={raffleNumbers} />}

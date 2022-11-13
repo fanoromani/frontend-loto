@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { RaffleProps } from "../types";
 interface BackgroundProps {
   raffles: RaffleProps[];
@@ -5,12 +6,15 @@ interface BackgroundProps {
 }
 
 export function Background({ raffles, raffleID }: BackgroundProps) {
-  const bgColor = raffles
-    .find((e) => e.id.toLocaleString() === raffleID)
-    ?.nome.replace("-", "")
-    .replace("á", "a")
-    .replace(/ /g, "");
-  console.log(bgColor);
+  const [bgColor, setBgColor] = useState("megasena");
+
+  console.log(
+    raffles
+      .find((e) => e.id.toLocaleString() === raffleID)
+      ?.nome.replace("-", "")
+      .replace("á", "a")
+      .replace(/ /g, "") || ""
+  );
 
   return (
     <>
