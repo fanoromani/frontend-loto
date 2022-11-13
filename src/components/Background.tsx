@@ -21,7 +21,7 @@ export function Background({ raffles, raffleID }: BackgroundProps) {
   return (
     <>
       <svg
-        className={`block md:hidden transition-colors fill-lotomania`}
+        className={`block md:hidden transition-colors ${bgColor}`}
         preserveAspectRatio="none"
         width="auto"
         height="auto"
@@ -34,14 +34,13 @@ export function Background({ raffles, raffleID }: BackgroundProps) {
           top: 0,
           width: "100%",
           zIndex: -1,
-          fill: "#fec3f6",
         }}
       >
         <path d="M871.477 569.828C871.477 569.828 306.227 281.609 -347 569.828V-132L871.477 -132V569.828Z" />
       </svg>
 
       <svg
-        className={`hidden md:block transition-colors fill-${bgColor}`}
+        className={`hidden md:block transition-colors ${bgColor}`}
         preserveAspectRatio="none"
         width="auto"
         height="100vh"

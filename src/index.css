@@ -7,3 +7,22 @@
 body {
   overflow-x: hidden;
 }
+
+.megasena {
+  @apply fill-megasena;
+}
+.lotomania {
+  @apply fill-lotomania;
+}
+.lotofacil {
+  @apply fill-lotofacil;
+}
+.diadesorte {
+  @apply fill-diadesorte;
+}
+.timemania {
+  @apply fill-timemania;
+}
+.quina {
+  @apply fill-quina;
+}
