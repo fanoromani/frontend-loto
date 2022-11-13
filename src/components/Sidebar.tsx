@@ -1,14 +1,19 @@
 import { Dropdown } from "./Dropdown";
 import logo from "../assets/logo.png";
 import { Background } from "./Background";
+import { RaffleProps } from "../types";
+
+interface SidebarProps {
+  raffles: RaffleProps[];
+  handleRaffleSelect: Function;
+  raffleID: string;
+}
 
 export function Sidebar({
   raffles,
-  raffleData,
-  setRaffleID,
-  setNumbersID,
   handleRaffleSelect,
-}: any) {
+  raffleID,
+}: SidebarProps) {
   return (
     <div
       className="
@@ -34,23 +39,21 @@ export function Sidebar({
     overflow-hidden
     "
     >
-      <Dropdown
-        raffles={raffles}
-        raffleData={raffleData}
-        setRaffleID={setRaffleID}
-        setNumbersID={setNumbersID}
-        handleRaffleSelect={handleRaffleSelect}
-      />
+      <Dropdown raffles={raffles} handleRaffleSelect={handleRaffleSelect} />
       <div className="my-20 md:mt-0 flex items-center gap-6">
         <img src={logo} alt="" />
-        <div className="font-bold text-3xl text-white">MEGA-SENA</div>
+        <div className="font-bold text-3xl text-white">
+          {raffles
+            .find((e) => e.id.toLocaleString() === raffleID)
+            ?.nome.toUpperCase()}
+        </div>
       </div>
       <div className="text-center md:text-left">
         <p className="font-medium text-white text-sm">CONCURSO</p>
         <p className="font-bold text-white text-xl mt-3">4531 – 07/04/2020</p>
       </div>
 
-      <Background />
+      <Background raffles={raffles} raffleID={raffleID} />
     </div>
   );
 }

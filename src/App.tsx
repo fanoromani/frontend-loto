@@ -3,13 +3,18 @@ import { api } from "./lib/axios";
 import { BallSorter } from "./components/BallSorter";
 import { Sidebar } from "./components/Sidebar";
 import "./index.css";
-import { RaffleDataProps, RaffleProps } from "./types";
+import { RaffleDataProps, RaffleProps, RaffleNumbersProps } from "./types";
 
 function App() {
-  const [raffles, setRaffles] = useState<RaffleProps[]>();
+  const [raffles, setRaffles] = useState<RaffleProps[]>([]);
   const [raffleData, setRaffleData] = useState<RaffleDataProps[]>([]);
-  const [raffleNumbers, setRaffleNumbers] = useState();
-  const [raffleID, setRaffleID] = useState<string>();
+  const [raffleNumbers, setRaffleNumbers] = useState<RaffleNumbersProps>({
+    data: "",
+    id: "",
+    loteria: 0,
+    numeros: ["", ""],
+  });
+  const [raffleID, setRaffleID] = useState<string>("");
   const [numbersID, setNumbersID] = useState<string>("");
 
   const [loading, setLoading] = useState(true);
@@ -71,13 +76,11 @@ function App() {
       {!loading && (
         <Sidebar
           raffles={raffles}
-          raffleData={raffleData}
-          setRaffleID={setRaffleID}
-          setNumbersID={setNumbersID}
           handleRaffleSelect={handleRaffleSelect}
+          raffleID={raffleID}
         />
       )}
-      {!loading && <BallSorter />}
+      {!loading && <BallSorter raffleNumbers={raffleNumbers} />}
     </div>
   );
 }

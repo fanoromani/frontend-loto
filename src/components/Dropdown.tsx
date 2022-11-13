@@ -3,28 +3,10 @@ import { RaffleProps } from "../types";
 
 interface DropdownProps {
   raffles: RaffleProps[];
-  raffleData: any[];
-  setRaffleID: Function;
-  setNumbersID: Function;
   handleRaffleSelect: Function;
 }
 
-export function Dropdown({
-  raffles,
-  raffleData,
-  setRaffleID,
-  setNumbersID,
-  handleRaffleSelect,
-}: DropdownProps) {
-  /* const handleRaffleSelect = (value: string) => {
-    if (value !== "") {
-      setRaffleID(value);
-      setNumbersID(
-        raffleData.find((e) => e.loteriaId === parseInt(value)).concursoId
-      );
-    }
-  }; */
-
+export function Dropdown({ raffles, handleRaffleSelect }: DropdownProps) {
   return (
     <Select.Root onValueChange={(value) => handleRaffleSelect(value)}>
       <Select.Trigger className="w-52 bg-white py-3 px-4 rounded-lg font-medium text-font text-sm flex justify-between items-center">

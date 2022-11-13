@@ -1,8 +1,21 @@
-export function Background() {
+import { RaffleProps } from "../types";
+interface BackgroundProps {
+  raffles: RaffleProps[];
+  raffleID: string;
+}
+
+export function Background({ raffles, raffleID }: BackgroundProps) {
+  const bgColor = raffles
+    .find((e) => e.id.toLocaleString() === raffleID)
+    ?.nome.replace("-", "")
+    .replace("á", "a")
+    .replace(/ /g, "");
+  console.log(bgColor);
+
   return (
     <>
       <svg
-        className="block md:hidden"
+        className={`block md:hidden transition-colors fill-${bgColor}`}
         preserveAspectRatio="none"
         width="auto"
         height="auto"
@@ -17,14 +30,11 @@ export function Background() {
           zIndex: -1,
         }}
       >
-        <path
-          d="M871.477 569.828C871.477 569.828 306.227 281.609 -347 569.828V-132L871.477 -132V569.828Z"
-          fill="#6BEFA3"
-        />
+        <path d="M871.477 569.828C871.477 569.828 306.227 281.609 -347 569.828V-132L871.477 -132V569.828Z" />
       </svg>
 
       <svg
-        className="hidden md:block"
+        className={`hidden md:block transition-colors fill-${bgColor}`}
         preserveAspectRatio="none"
         width="auto"
         height="100vh"
@@ -39,10 +49,7 @@ export function Background() {
           zIndex: -1,
         }}
       >
-        <path
-          d="M613 0C613 0 361.26 501.011 613 1080H0V0H613Z"
-          fill="#6BEFA3"
-        />
+        <path d="M613 0C613 0 361.26 501.011 613 1080H0V0H613Z" />
       </svg>
     </>
   );
