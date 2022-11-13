@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RaffleProps } from "../types";
 interface BackgroundProps {
   raffles: RaffleProps[];
@@ -6,20 +6,22 @@ interface BackgroundProps {
 }
 
 export function Background({ raffles, raffleID }: BackgroundProps) {
-  const [bgColor, setBgColor] = useState("megasena");
+  const [bgColor, setBgColor] = useState<string>("megasena");
 
-  console.log(
-    raffles
-      .find((e) => e.id.toLocaleString() === raffleID)
-      ?.nome.replace("-", "")
-      .replace("á", "a")
-      .replace(/ /g, "") || ""
-  );
+  useEffect(() => {
+    setBgColor(
+      raffles
+        .find((e) => e.id.toLocaleString() === raffleID)
+        ?.nome?.replace("-", "")
+        ?.replace("á", "a")
+        ?.replace(/ /g, "") || ""
+    );
+  }, [raffleID]);
 
   return (
     <>
       <svg
-        className={`block md:hidden transition-colors fill-${bgColor}`}
+        className={`block md:hidden transition-colors fill-lotomania`}
         preserveAspectRatio="none"
         width="auto"
         height="auto"
@@ -32,6 +34,7 @@ export function Background({ raffles, raffleID }: BackgroundProps) {
           top: 0,
           width: "100%",
           zIndex: -1,
+          fill: "#fec3f6",
         }}
       >
         <path d="M871.477 569.828C871.477 569.828 306.227 281.609 -347 569.828V-132L871.477 -132V569.828Z" />
