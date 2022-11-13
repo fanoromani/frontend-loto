@@ -6,7 +6,9 @@ import "./index.css";
 import { RaffleDataProps, RaffleProps, RaffleNumbersProps } from "./types";
 
 function App() {
-  const [raffles, setRaffles] = useState<RaffleProps[]>([]);
+  const [raffles, setRaffles] = useState<RaffleProps[]>([
+    { id: 0, nome: "mega-sena" },
+  ]);
   const [raffleData, setRaffleData] = useState<RaffleDataProps[]>([]);
   const [raffleNumbers, setRaffleNumbers] = useState<RaffleNumbersProps>({
     data: "",
@@ -14,11 +16,22 @@ function App() {
     loteria: 0,
     numeros: ["", ""],
   });
-  const [raffleID, setRaffleID] = useState<string>("");
-  const [numbersID, setNumbersID] = useState<string>("");
+  const [raffleID, setRaffleID] = useState<string>("0");
+  const [numbersID, setNumbersID] = useState<string>("2359");
+  const [bgColor, setBgColor] = useState<string>("megasena");
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setBgColor(
+      raffles
+        .find((e) => e.id.toLocaleString() === raffleID)
+        ?.nome?.replace("-", "")
+        ?.replace("á", "a")
+        ?.replace(/ /g, "") || ""
+    );
+  }, [raffleID]);
 
   useEffect(() => {
     setLoading(true);
@@ -74,7 +87,8 @@ function App() {
           raffles={raffles}
           handleRaffleSelect={handleRaffleSelect}
           raffleID={raffleID}
-          raffleData={raffleData}
+          bgColor={bgColor}
+          raffleNumbers={raffleNumbers}
         />
       )}
       {!loading && <BallSorter raffleNumbers={raffleNumbers} />}

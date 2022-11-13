@@ -3,25 +3,17 @@ import { RaffleProps } from "../types";
 interface BackgroundProps {
   raffles: RaffleProps[];
   raffleID: string;
+  bgColor: string;
 }
 
-export function Background({ raffles, raffleID }: BackgroundProps) {
-  const [bgColor, setBgColor] = useState<string>("megasena");
-
-  useEffect(() => {
-    setBgColor(
-      raffles
-        .find((e) => e.id.toLocaleString() === raffleID)
-        ?.nome?.replace("-", "")
-        ?.replace("á", "a")
-        ?.replace(/ /g, "") || ""
-    );
-  }, [raffleID]);
-
+export function Background({ raffles, raffleID, bgColor }: BackgroundProps) {
+  console.log(bgColor);
   return (
     <>
       <svg
-        className={`block md:hidden transition-colors ${bgColor}`}
+        className={`block md:hidden transition-colors ${
+          bgColor ? bgColor : "megasena"
+        }`}
         preserveAspectRatio="none"
         width="auto"
         height="auto"

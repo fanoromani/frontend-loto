@@ -1,24 +1,25 @@
 import { Dropdown } from "./Dropdown";
 import logo from "../assets/logo.png";
 import { Background } from "./Background";
-import { RaffleProps, RaffleDataProps } from "../types";
+import { RaffleProps, RaffleNumbersProps } from "../types";
 
 interface SidebarProps {
   raffles: RaffleProps[];
   handleRaffleSelect: Function;
   raffleID: string;
-  raffleData: RaffleDataProps[];
+  raffleNumbers: RaffleNumbersProps;
+  bgColor: string;
 }
 
 export function Sidebar({
   raffles,
   handleRaffleSelect,
   raffleID,
-  raffleData,
+  raffleNumbers,
+  bgColor,
 }: SidebarProps) {
-  console.log(
-    raffles.find((e) => e.id.toLocaleString() === raffleID)?.nome.toUpperCase()
-  );
+  let date = new Date();
+  console.log(date.getMonth() + 1, "mes");
 
   return (
     <div
@@ -56,10 +57,13 @@ export function Sidebar({
       </div>
       <div className="text-center md:text-left">
         <p className="font-medium text-white text-sm">CONCURSO</p>
-        <p className="font-bold text-white text-xl mt-3">4531 – 07/04/2020</p>
+        <p className="font-bold text-white text-xl mt-3">
+          {raffleNumbers.id} – {date.getDate()}/{date.getMonth()}/
+          {date.getFullYear()}
+        </p>
       </div>
 
-      <Background raffles={raffles} raffleID={raffleID} />
+      <Background raffles={raffles} raffleID={raffleID} bgColor={bgColor} />
     </div>
   );
 }
